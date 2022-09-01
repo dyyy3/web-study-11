@@ -41,4 +41,6 @@ public class DBmanager {
 			e.printStackTrace();
 		}
 	}
+	
+	// commit 테스트
 }
