@@ -1,16 +1,13 @@
 package com.saeyan.dao;
+import com.saeyan.dto.BoardVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.saeyan.dto.BoardVO;
-
 import util.DBManager;
 
 public class BoardDAO {
@@ -193,5 +190,21 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		return bVo;
+	}
+	
+	public void deleteBoard(String num) {
+		String sql = "delete bboard where num=?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
