@@ -8,7 +8,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class DBmanager {
+public class DBManager {
 	public static Connection getConnection() {
 		Connection conn = null;
 		
