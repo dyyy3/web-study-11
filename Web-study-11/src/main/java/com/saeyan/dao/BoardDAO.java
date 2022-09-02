@@ -1,14 +1,10 @@
 package com.saeyan.dao;
-import com.saeyan.dto.BoardVO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import com.saeyan.dto.BoardVO;
 import util.DBManager;
+
+import java.sql.*;
+import java.util.*;
 
 public class BoardDAO {
 	private BoardDAO() {
@@ -42,7 +38,7 @@ public class BoardDAO {
 				bVo.setPass(rs.getString("pass"));
 				bVo.setTitle(rs.getString("title"));
 				bVo.setContent(rs.getString("content"));
-				bVo.setReadcount(rs.getInt("readcont"));
+				bVo.setReadcount(rs.getInt("readcount"));
 				bVo.setWritedate(rs.getTimestamp("writedate"));
 				
 				list.add(bVo);
@@ -75,6 +71,8 @@ public class BoardDAO {
 			pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
 		}
 	}
 	
@@ -151,6 +149,7 @@ public class BoardDAO {
 			pstmt.setString(5, bVo.getContent());
 			pstmt.setInt(6, bVo.getNum());
 					
+			pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -168,7 +167,7 @@ public class BoardDAO {
 		
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareCall(sql);
+			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, pass);
 			pstmt.setString(2, num);

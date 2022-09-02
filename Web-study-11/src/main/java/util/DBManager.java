@@ -14,7 +14,7 @@ public class DBManager {
 		
 		try {
 			Context initContext = new InitialContext();
-			Context envContext = (Context)initContext.lookup("java:/com/env");
+			Context envContext = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
 			conn = ds.getConnection();
 		}catch(Exception e) {
