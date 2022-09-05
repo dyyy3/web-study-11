@@ -206,7 +206,5 @@ public class BoardDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println(pstmt);
 	}
 }
