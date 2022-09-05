@@ -192,6 +192,7 @@ public class BoardDAO {
 	}
 	
 	public void deleteBoard(String num) {
+		System.out.println("deleteBoard -- num : " + num);
 		String sql = "delete bboard where num=?";
 		
 		Connection conn = null;
@@ -205,5 +206,7 @@ public class BoardDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println(pstmt);
 	}
 }
